@@ -47,7 +47,8 @@ target_include_directories(${target_proj} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 
 target_link_options(${target_proj} PRIVATE -Xlinker --print-memory-usage)
 target_compile_options(${target_proj} PRIVATE -Wall -Wextra -DCFG_TUSB_DEBUG=1)
-target_link_libraries(${target_proj} midi_uart_lib tinyusb_host tinyusb_board ring_buffer_lib pico_stdlib)
+target_link_libraries(${target_proj} midi_uart_lib tinyusb_host tinyusb_board ring_buffer_lib pico_stdlib
+        pico_cyw43_arch_none     # we need Wifi to access the GPIO, but we don't need anything else
+)
 
 pico_add_extra_outputs(${target_proj})
-
